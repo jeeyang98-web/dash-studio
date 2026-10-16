@@ -44,5 +44,5 @@ function moveDrag(e){if(!drag)return;const w=widgets.find(w=>w.id===drag.id);if(
 function endDrag(e){if(!drag)return;const w=widgets.find(w=>w.id===drag.id);if(mode==='sorted'&&w){const dy=e.clientY-drag.y,dx=e.clientX-drag.x;if(Math.abs(dy)>30||Math.abs(dx)>30){const same=widgets.filter(v=>v.page===page),i=same.findIndex(v=>v.id===w.id),step=dy>30?1:dy< -30?-1:dx>30?1:-1,j=Math.min(same.length-1,Math.max(0,i+step));if(i!==j){const other=same[j],idx=widgets.indexOf(w),otherIdx=widgets.indexOf(other);widgets[idx]=other;widgets[otherIdx]=w}}}}drag=null;renderCustomizer()}
 el('ce-grid').addEventListener('pointerdown',startDrag);el('ce-grid').addEventListener('pointermove',moveDrag);el('ce-grid').addEventListener('pointerup',endDrag);el('ce-grid').addEventListener('pointercancel',endDrag);
 function open(){document.querySelectorAll('main').forEach(m=>m.classList.add('hide'));container.classList.remove('hide');renderCustomizer();window.scrollTo(0,0)}
-const nav=document.querySelector('header nav');const btn=document.createElement('button');btn.textContent='⚙ 화면 편집';btn.onclick=open;nav.insertBefore(btn,nav.lastElementChild);window.openDashStudioCustomizer=open;
+window.openDashStudioCustomizer=open;
 })();
